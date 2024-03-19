@@ -1,5 +1,6 @@
 package com.desafio.briks.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,6 +13,7 @@ public class Category {
     private String code;
     private String name;
     private String description;
+    @Column(columnDefinition = "text")
     private String icon;
 
 
