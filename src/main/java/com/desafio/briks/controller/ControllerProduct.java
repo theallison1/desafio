@@ -23,12 +23,15 @@ public class ControllerProduct {
 
     @GetMapping
     public ResponseEntity<Page<Product>> getAllProduct(@RequestParam(defaultValue = "0") int page,
-                                                     @RequestParam(defaultValue = "10") int size) {
+                                                     @RequestParam(defaultValue = "10") int size,
+                                                        @RequestParam(required = false) String name,
+                                                            @RequestParam(required = false) Double price,
+                                                       @RequestParam(required = false) int id){
         Pageable pageable = PageRequest.of(page, size);
-        Page<Product> products = serviceProduct.findAll(pageable);
+        Page<Product> products = serviceProduct.findAll(name,id,price,pageable);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
-    @GetMapping("/cat")
+    @GetMapping("/category")
     public ResponseEntity<List<Category>> getCategory(@RequestParam(defaultValue = "0") int page,
                                                        @RequestParam(defaultValue = "10") int size) throws JsonProcessingException {
 
